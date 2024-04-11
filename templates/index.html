@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Text Generation</h1>
+    <form action="/generate_text" method="post">
+        <label for="length">Length:</label>
+        <input type="number" id="length" name="length" min="1" required>
+        <br>
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" name="temperature" step="0.1" min="0.1" max="2.0" value="1.0" required>
+        <br>
+        <button type="submit">Generate Text</button>
+    </form>
+    {% if generated_text %}
+    <div class="generated-text">
+        <h2>Generated Text</h2>
+        <p>{{ generated_text }}</p>
+    </div>
+    {% endif %}
+    {% if error_message %}
+    <div class="error-message">
+        <p>{{ error_message }}</p>
+    </div>
+    {% endif %}
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
